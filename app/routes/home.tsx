@@ -1,17 +1,16 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "HSGS: Hackathon 2025" },
+    { name: "description", content: "Welcome to HSGS Hackathon 2025!" },
   ];
 }
 
-export function loader({ context }: Route.LoaderArgs) {
-  return { message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE };
-}
-
-export default function Home({ loaderData }: Route.ComponentProps) {
-  return <Welcome message={loaderData.message} />;
+export default function Home() {
+  return (
+    <div className="font-sans min-h-screen flex items-center justify-center">
+      <h1 className="text-4xl font-bold">Welcome</h1>
+    </div>
+  );
 }
