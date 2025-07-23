@@ -2,6 +2,7 @@ export async function loader() {
   try {
     const url = new URL(
       "/api/problems",
+      process.env.VITE_API_BASE_URL ||
       import.meta.env.VITE_API_BASE_URL ||
         "https://api.example.com"
     );
