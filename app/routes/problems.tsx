@@ -22,10 +22,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "~/components/ui/pagination";
-import {
-  type Problem,
-  type ProblemType,
-} from "~/lib/server-actions/problems";
+import { type Problem, type ProblemType } from "~/lib/server-actions/problems";
 import RatingDisplay from "~/components/RatingDisplay";
 import CourseSelector from "~/components/CourseSelector";
 import Loading from "~/components/Loading";
@@ -103,6 +100,11 @@ export function meta({}: Route.MetaArgs): Route.MetaDescriptors {
 }
 
 export default function Problems() {
+  const canvasLMSBaseUrl =
+    process.env.VITE_CANVAS_API_BASE_URL ||
+    import.meta.env.VITE_CANVAS_API_BASE_URL ||
+    "https://canvas.example.com";
+
   const { problems: initialProblems, courses } = useLoaderData<{
     problems: Problem[];
     courses: any[];
@@ -447,7 +449,10 @@ export default function Problems() {
                     <tr key={problem.problemId} className="data-table-body-row">
                       <td className="data-table-body-cell">
                         <Link
-                          to={`/problem/${problem.problemId}`}
+                          to={`${new URL(
+                            `/courses/${problem.course.courseId}/quizzes/${problem.problemId}`,
+                            canvasLMSBaseUrl
+                          )}`}
                           className="text-primary hover:underline font-medium"
                         >
                           {problem.name}
