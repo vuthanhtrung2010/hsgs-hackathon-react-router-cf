@@ -7,9 +7,6 @@ export default [
   route("problems", "routes/problems.tsx"),
   
   // API routes
-  route("api/courses", "routes/api.courses.ts"),
-  route("api/problems", "routes/api.problems.ts"),
-  route("api/users/:userId", "routes/api.users.$userId.ts"),
   route("api/ranking/:courseId", "routes/api.ranking.$courseId.ts"),
   
   // 404 catch-all
